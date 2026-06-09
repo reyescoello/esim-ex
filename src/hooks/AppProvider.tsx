@@ -38,7 +38,7 @@ interface AppContextType {
   authLoaded: boolean;
   login: (email: string, password: string) => Promise<boolean>;
   logout: () => Promise<void>;
-  register: (name: string, email: string, password: string) => Promise<{ ok: boolean; error?: string }>;
+  register: (name: string, email: string, password: string, extra?: { firstName?: string; lastName?: string; phone?: string; dateOfBirth?: string; address?: { street: string; city: string; country: string; postalCode: string } }) => Promise<{ ok: boolean; error?: string }>;
   purchases: PurchaseRecord[];
   purchasesLoaded: boolean;
   buyItems: (items: CartItem[]) => Promise<{ ok: boolean; error?: string }>;

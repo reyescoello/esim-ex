@@ -4,12 +4,12 @@ const sections = [
   {
     title: '1. Agreement to Terms',
     content:
-      'By accessing or using the Simora website and services (collectively, the "Service"), you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you may not access or use the Service. These Terms apply to all visitors, users, and others who access or use the Service.',
+      'By accessing or using the Esim-Ex website and services (collectively, the "Service"), you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, you may not access or use the Service. These Terms apply to all visitors, users, and others who access or use the Service.',
   },
   {
     title: '2. Description of Service',
     content:
-      'Simora provides a digital marketplace for purchasing eSIM data plans for international travel. Our Service enables users to browse available data plans, purchase eSIM profiles, and manage their connectivity through our platform. We act as an intermediary between mobile network operators and end users.',
+      'Esim-Ex provides a digital marketplace for purchasing eSIM data plans for international travel. Our Service enables users to browse available data plans, purchase eSIM profiles, and manage their connectivity through our platform. We act as an intermediary between mobile network operators and end users.',
   },
   {
     title: '3. Account Registration',
@@ -19,7 +19,7 @@ const sections = [
   {
     title: '4. Purchases and Payments',
     content:
-      'All eSIM plan purchases are processed in GBP (British Pounds). Prices displayed in other currencies are estimates based on current exchange rates and may differ from the actual charged amount. Payment is required at the time of purchase. We accept major credit and debit cards. All transactions are processed with 3D Secure authentication for your protection. Wallet top-ups are non-refundable but never expire.',
+      'All eSIM plan purchases are processed in GBP (British Pounds). Prices displayed in other currencies are estimates based on current exchange rates and may differ from the actual charged amount. Payment is required at the time of purchase. We accept Visa and Mastercard credit and debit cards only. All transactions are processed with 3D Secure authentication for your protection. Wallet top-ups are non-refundable but never expire.',
   },
   {
     title: '5. eSIM Activation and Usage',
@@ -34,17 +34,17 @@ const sections = [
   {
     title: '7. Acceptable Use',
     content:
-      'You agree not to use the Service for any unlawful purpose or in violation of any applicable laws. You may not resell, redistribute, or commercially exploit eSIM plans purchased through Simora without our prior written consent. Excessive or abusive usage that degrades network quality for other users may result in throttling or suspension of service.',
+      'You agree not to use the Service for any unlawful purpose or in violation of any applicable laws. You may not resell, redistribute, or commercially exploit eSIM plans purchased through Esim-Ex without our prior written consent. Excessive or abusive usage that degrades network quality for other users may result in throttling or suspension of service.',
   },
   {
     title: '8. Intellectual Property',
     content:
-      'The Service and its original content, features, and functionality are owned by Simora Ltd and are protected by international copyright, trademark, and other intellectual property laws. Our trademarks, service marks, and logos may not be used in connection with any product or service without our prior written consent.',
+      'The Service and its original content, features, and functionality are owned by ESIMEX LTD (Company number 17173983) and are protected by international copyright, trademark, and other intellectual property laws. Our trademarks, service marks, and logos may not be used in connection with any product or service without our prior written consent.',
   },
   {
     title: '9. Limitation of Liability',
     content:
-      'To the maximum extent permitted by applicable law, Simora shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the Service. This includes but is not limited to loss of data, loss of profits, or business interruption. Our total liability for any claim arising from the Service shall not exceed the amount you paid to Simora in the 12 months preceding the claim.',
+      'To the maximum extent permitted by applicable law, Esim-Ex shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the Service. This includes but is not limited to loss of data, loss of profits, or business interruption. Our total liability for any claim arising from the Service shall not exceed the amount you paid to Esim-Ex in the 12 months preceding the claim.',
   },
   {
     title: '10. Network Coverage and Performance',
@@ -69,7 +69,7 @@ const sections = [
   {
     title: '14. Contact',
     content:
-      'If you have any questions about these Terms of Service, please contact us at legal@simora.com or write to Simora Ltd, 71 Queen Victoria Street, London, EC4V 4AY, United Kingdom.',
+      'If you have any questions about these Terms of Service, please contact us at legal@esim-ex.com or write to ESIMEX LTD, Dept 6750, 196 High Road, Wood Green, London, United Kingdom, N22 8HH.',
   },
 ];
 
@@ -86,7 +86,7 @@ export default function TermsPage() {
       <AnimatedSection delay={0.1} className="mt-10">
         <div className="rounded-2xl border border-border bg-white p-6 md:p-10 shadow-sm">
           <p className="text-text-light leading-relaxed">
-            Please read these Terms of Service carefully before using Simora. These terms govern
+            Please read these Terms of Service carefully before using Esim-Ex. These terms govern
             your access to and use of our eSIM marketplace platform and related services.
           </p>
 

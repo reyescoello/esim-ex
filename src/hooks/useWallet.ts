@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 
-const WALLET_KEY = 'simora_wallet_balance';
+const WALLET_KEY = 'esimex_wallet_balance';
 
 export function useWallet() {
   const [balance, setBalance] = useState(0);

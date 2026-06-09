@@ -44,7 +44,8 @@ export function Header() {
                 <ChevronDown className="h-3.5 w-3.5" />
               </Link>
               {locationsOpen && (
-                <div className="absolute top-full left-0 z-50 mt-1 w-80 rounded-xl border border-border bg-white p-4 shadow-lg">
+                <div className="absolute top-full left-0 z-50 pt-1 w-80">
+                <div className="rounded-xl border border-border bg-white p-4 shadow-lg">
                   <div className="grid grid-cols-2 gap-1">
                     {regions.map((region) => (
                       <div key={region} className="mb-3">
@@ -75,6 +76,7 @@ export function Header() {
                   >
                     View all locations →
                   </Link>
+                </div>
                 </div>
               )}
             </div>

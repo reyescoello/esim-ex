@@ -72,10 +72,10 @@ export default function HowItWorksPage() {
               Simple 3-Step Process
             </span>
             <h1 className="text-3xl font-extrabold text-text sm:text-4xl md:text-5xl">
-              How Simora Works
+              How Esim-Ex Works
             </h1>
             <p className="mt-5 text-lg text-text-light max-w-2xl mx-auto">
-              Getting connected abroad used to mean hunting for SIM cards at airports, dealing with language barriers, and paying extortionate roaming fees. With Simora, it takes three simple steps.
+              Getting connected abroad used to mean hunting for SIM cards at airports, dealing with language barriers, and paying extortionate roaming fees. With Esim-Ex, it takes three simple steps.
             </p>
           </AnimatedSection>
         </div>
@@ -175,7 +175,7 @@ export default function HowItWorksPage() {
           <AnimatedSection>
             <SectionHeader
               title="Tips for a Smooth Experience"
-              subtitle="Follow these suggestions to get the most out of your Simora eSIM."
+              subtitle="Follow these suggestions to get the most out of your Esim-Ex eSIM."
             />
           </AnimatedSection>
 
@@ -205,7 +205,7 @@ export default function HowItWorksPage() {
                 {
                   title: 'Monitor your data usage',
                   description:
-                    'Check your remaining data in your phone settings under Mobile Data. When your data runs low, purchase a new plan from the Simora app or website.',
+                    'Check your remaining data in your phone settings under Mobile Data. When your data runs low, purchase a new plan from the Esim-Ex app or website.',
                 },
               ].map((tip, i) => (
                 <div

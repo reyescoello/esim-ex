@@ -1,21 +1,20 @@
 'use client';
 
 import { useState, useMemo } from 'react';
-import { MapPin, ArrowUpDown, Grid3X3, List, Filter } from 'lucide-react';
+import { MapPin, ArrowUpDown, Grid3X3, List } from 'lucide-react';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { SearchBar } from '@/components/ui/SearchBar';
 import { CountryCard } from '@/components/cards/CountryCard';
 import { countries, regions } from '@/data/countries';
 
 type RegionFilter = 'All' | (typeof regions)[number];
-type PriceFilter = 'all' | 'under5' | '5to10' | '10to20';
+
 type SortOption = 'popular' | 'az' | 'za' | 'price-low' | 'price-high';
 
 const popularSlugs = ['united-states', 'united-kingdom', 'turkey', 'japan', 'spain', 'france', 'italy', 'germany', 'thailand', 'australia'];
 
 export default function LocationsPage() {
   const [activeRegion, setActiveRegion] = useState<RegionFilter>('All');
-  const [priceFilter, setPriceFilter] = useState<PriceFilter>('all');
   const [sort, setSort] = useState<SortOption>('popular');
   const [view, setView] = useState<'grid' | 'list'>('grid');
 
@@ -24,16 +23,6 @@ export default function LocationsPage() {
 
     if (activeRegion !== 'All') {
       result = result.filter((c) => c.region === activeRegion);
-    }
-
-    if (priceFilter !== 'all') {
-      result = result.filter((c) => {
-        const lowest = Math.min(...c.plans.map((p) => p.price));
-        if (priceFilter === 'under5') return lowest < 5;
-        if (priceFilter === '5to10') return lowest >= 5 && lowest <= 10;
-        if (priceFilter === '10to20') return lowest > 10 && lowest <= 20;
-        return true;
-      });
     }
 
     if (sort === 'az') result.sort((a, b) => a.name.localeCompare(b.name));
@@ -50,7 +39,7 @@ export default function LocationsPage() {
     });
 
     return result;
-  }, [activeRegion, priceFilter, sort]);
+  }, [activeRegion, sort]);
 
   const allTabs: RegionFilter[] = ['All', ...regions];
 
@@ -85,13 +74,6 @@ export default function LocationsPage() {
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
             <div className="flex flex-wrap items-center gap-2">
-              <Filter className="h-4 w-4 text-text-light" />
-              <select value={priceFilter} onChange={(e) => setPriceFilter(e.target.value as PriceFilter)} className="rounded-lg border border-border bg-white px-3 py-2 text-sm text-text focus:border-primary focus:outline-none">
-                <option value="all">All prices</option>
-                <option value="under5">Under £5</option>
-                <option value="5to10">£5 - £10</option>
-                <option value="10to20">£10 - £20</option>
-              </select>
               <div className="flex items-center gap-1 rounded-lg border border-border bg-white px-2 py-1">
                 <ArrowUpDown className="h-3.5 w-3.5 text-text-light" />
                 <select value={sort} onChange={(e) => setSort(e.target.value as SortOption)} className="bg-transparent text-sm text-text focus:outline-none">
@@ -138,7 +120,7 @@ export default function LocationsPage() {
           {filtered.length === 0 && (
             <div className="py-20 text-center">
               <p className="text-lg font-medium text-text-light">No destinations match your filters.</p>
-              <button onClick={() => { setActiveRegion('All'); setPriceFilter('all'); }} className="mt-3 text-sm font-medium text-primary hover:text-primary-dark">Clear all filters</button>
+              <button onClick={() => { setActiveRegion('All'); }} className="mt-3 text-sm font-medium text-primary hover:text-primary-dark">Clear all filters</button>
             </div>
           )}
         </div>

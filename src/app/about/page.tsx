@@ -33,7 +33,7 @@ export default function AboutPage() {
               <span className="text-primary">One eSIM at a Time</span>
             </h1>
             <p className="mt-5 text-lg text-text-light max-w-2xl mx-auto leading-relaxed">
-              Simora was founded on a simple belief: staying connected while travelling should be effortless and affordable for everyone. No more overpriced roaming, no more hunting for SIM cards in foreign airports.
+              Esim-Ex was founded on a simple belief: staying connected while travelling should be effortless and affordable for everyone. No more overpriced roaming, no more hunting for SIM cards in foreign airports.
             </p>
           </AnimatedSection>
         </div>
@@ -79,7 +79,7 @@ export default function AboutPage() {
                   We believe that access to mobile data is essential for modern travel. Whether you are navigating a new city, keeping in touch with family, or working remotely from a beach cafe, you should not have to worry about connectivity.
                 </p>
                 <p className="mt-4 text-text-light leading-relaxed">
-                  Simora partners with carrier networks in over 190 countries to deliver fast, reliable mobile data at local rates. Our platform is designed to make the entire experience — from finding the right plan to getting online — as frictionless as possible.
+                  Esim-Ex partners with carrier networks in over 190 countries to deliver fast, reliable mobile data at local rates. Our platform is designed to make the entire experience — from finding the right plan to getting online — as frictionless as possible.
                 </p>
               </div>
             </div>
@@ -157,7 +157,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-5xl px-4">
           <AnimatedSection>
             <SectionHeader
-              title="Why Travellers Trust Simora"
+              title="Why Travellers Trust Esim-Ex"
               subtitle="Hundreds of thousands of customers rely on us for their travel connectivity."
             />
           </AnimatedSection>
@@ -166,7 +166,7 @@ export default function AboutPage() {
             {[
               {
                 quote:
-                  'I used to spend ages at airport SIM kiosks every trip. With Simora, I scan a QR code before I even board my flight. It is genuinely life-changing for frequent travellers.',
+                  'I used to spend ages at airport SIM kiosks every trip. With Esim-Ex, I scan a QR code before I even board my flight. It is genuinely life-changing for frequent travellers.',
                 name: 'Sarah M.',
                 location: 'London, UK',
               },
@@ -184,7 +184,7 @@ export default function AboutPage() {
               },
               {
                 quote:
-                  'As a digital nomad, reliable data is non-negotiable. Simora has been my go-to for over a year — consistent speeds, fair prices, and plans for every country I visit.',
+                  'As a digital nomad, reliable data is non-negotiable. Esim-Ex has been my go-to for over a year — consistent speeds, fair prices, and plans for every country I visit.',
                 name: 'Marco R.',
                 location: 'Lisbon, Portugal',
               },
@@ -218,7 +218,7 @@ export default function AboutPage() {
               Ready to Travel Connected?
             </h2>
             <p className="mt-4 text-text-light max-w-xl mx-auto">
-              Join over half a million travellers who trust Simora for affordable, reliable mobile data in 190+ countries.
+              Join over half a million travellers who trust Esim-Ex for affordable, reliable mobile data in 190+ countries.
             </p>
             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
               <Link

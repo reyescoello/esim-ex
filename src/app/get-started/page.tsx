@@ -59,7 +59,7 @@ export default function GetStartedPage() {
     <section className="mx-auto max-w-4xl px-4 py-16 md:py-24">
       <AnimatedSection>
         <SectionHeader
-          title="Get Started with Simora"
+          title="Get Started with Esim-Ex"
           subtitle="Four simple steps to stay connected on your next trip. No SIM swaps, no queues, no hassle."
         />
       </AnimatedSection>

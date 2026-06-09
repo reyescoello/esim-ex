@@ -43,7 +43,7 @@ While we strive to protect your information, no method of electronic transmissio
     title: '8. Your Rights',
     content: `Under applicable data protection laws, you have the right to access the personal data we hold about you, request correction of inaccurate data, request deletion of your data (subject to legal retention requirements), object to or restrict certain processing activities, receive your data in a portable format, and withdraw consent where processing is based on consent.
 
-To exercise any of these rights, contact us at privacy@simora.com. We will respond to your request within 30 days.`,
+To exercise any of these rights, contact us at privacy@esim-ex.com. We will respond to your request within 30 days.`,
   },
   {
     title: '9. International Data Transfers',
@@ -59,7 +59,7 @@ To exercise any of these rights, contact us at privacy@simora.com. We will respo
   },
   {
     title: '12. Contact Us',
-    content: `If you have questions or concerns about this Privacy Policy or our data practices, please contact our Data Protection Officer at privacy@simora.com, or write to Simora Ltd, 71 Queen Victoria Street, London, EC4V 4AY, United Kingdom.
+    content: `If you have questions or concerns about this Privacy Policy or our data practices, please contact our Data Protection Officer at privacy@esim-ex.com, or write to ESIMEX LTD, Dept 6750, 196 High Road, Wood Green, London, United Kingdom, N22 8HH.
 
 For complaints regarding our handling of your personal data, you also have the right to lodge a complaint with the Information Commissioner's Office (ICO) at ico.org.uk.`,
   },
@@ -78,7 +78,7 @@ export default function PrivacyPage() {
       <AnimatedSection delay={0.1} className="mt-10">
         <div className="rounded-2xl border border-border bg-white p-6 md:p-10 shadow-sm">
           <p className="text-text-light leading-relaxed">
-            At Simora, we take your privacy seriously. This Privacy Policy explains how we
+            At Esim-Ex, we take your privacy seriously. This Privacy Policy explains how we
             collect, use, store, and protect your personal information when you use our eSIM
             marketplace platform and related services (the &ldquo;Service&rdquo;).
           </p>

@@ -293,7 +293,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-4">
           <AnimatedSection>
             <SectionHeader
-              title="Why Choose Simora"
+              title="Why Choose Esim-Ex"
               subtitle="We make staying connected abroad simple, affordable, and stress-free."
             />
           </AnimatedSection>
@@ -354,7 +354,7 @@ export default function HomePage() {
                   Simple Wallet Top-Up
                 </h2>
                 <p className="mt-3 text-text-light leading-relaxed">
-                  Add funds to your Simora wallet and purchase plans instantly. Your balance never expires, and you can top up anytime with a minimum of just {formatPrice(10, currency)}.
+                  Add funds to your Esim-Ex wallet and purchase plans instantly. Your balance never expires, and you can top up anytime with a minimum of just {formatPrice(10, currency)}.
                 </p>
                 <ul className="mt-5 space-y-3">
                   {[
@@ -416,7 +416,7 @@ export default function HomePage() {
           <AnimatedSection>
             <SectionHeader
               title="Frequently Asked Questions"
-              subtitle="Everything you need to know about using Simora eSIMs."
+              subtitle="Everything you need to know about using Esim-Ex eSIMs."
             />
           </AnimatedSection>
           <AnimatedSection delay={0.1}>

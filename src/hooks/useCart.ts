@@ -11,7 +11,7 @@ export interface CartItem {
   coverage: string;
 }
 
-const CART_KEY = 'simora_cart';
+const CART_KEY = 'esimex_cart';
 
 export function useCart() {
   const [items, setItems] = useState<CartItem[]>([]);

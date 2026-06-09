@@ -11,7 +11,7 @@ export default function FAQPage() {
       <AnimatedSection>
         <SectionHeader
           title="Frequently Asked Questions"
-          subtitle="Quick answers to the most common questions about Simora and eSIM technology."
+          subtitle="Quick answers to the most common questions about Esim-Ex and eSIM technology."
         />
       </AnimatedSection>
 

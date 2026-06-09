@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { Currency } from '@/types';
 
-const CURRENCY_KEY = 'simora_currency';
+const CURRENCY_KEY = 'esimex_currency';
 
 export function useCurrency() {
   const [currency, setCurrencyState] = useState<Currency>('GBP');

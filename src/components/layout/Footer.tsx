@@ -3,6 +3,11 @@ import { footerSections } from '@/data/navigation';
 import { PaymentLogos } from '@/components/ui/PaymentLogos';
 import { Logo } from '@/components/ui/Logo';
 
+const companyName = process.env.NEXT_PUBLIC_COMPANY_NAME || 'ESIMEX LTD';
+const companyNumber = process.env.NEXT_PUBLIC_COMPANY_NUMBER || '17173983';
+const companyAddress = process.env.NEXT_PUBLIC_COMPANY_ADDRESS || 'Dept 6750, 196 High Road, Wood Green, London, United Kingdom, N22 8HH';
+const companyEmail = process.env.NEXT_PUBLIC_COMPANY_EMAIL || 'info@esim-ex.com';
+
 export function Footer() {
   return (
     <footer className="border-t border-border bg-surface">
@@ -37,20 +42,31 @@ export function Footer() {
             </div>
           ))}
         </div>
-        <div className="mt-10 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 sm:flex-row">
-          <p className="text-sm text-text-light">
-            © {new Date().getFullYear()} Simora. All rights reserved.
-          </p>
-          <div className="flex gap-6">
-            <Link href="/terms" className="text-sm text-text-light hover:text-primary transition-colors">
-              Terms
-            </Link>
-            <Link href="/privacy" className="text-sm text-text-light hover:text-primary transition-colors">
-              Privacy
-            </Link>
-            <Link href="/contact" className="text-sm text-text-light hover:text-primary transition-colors">
-              Contact
-            </Link>
+
+        <div className="mt-10 border-t border-border pt-8">
+          <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+            <div className="space-y-1 text-xs text-text-light">
+              <p className="font-semibold text-text">{companyName}</p>
+              <p>Company number: {companyNumber}</p>
+              <p>{companyAddress}</p>
+              <p>Email: <a href={`mailto:${companyEmail}`} className="hover:text-primary transition-colors">{companyEmail}</a></p>
+            </div>
+            <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
+              <p className="text-sm text-text-light">
+                © {new Date().getFullYear()} Esim-Ex. All rights reserved.
+              </p>
+              <div className="flex gap-6">
+                <Link href="/terms" className="text-sm text-text-light hover:text-primary transition-colors">
+                  Terms
+                </Link>
+                <Link href="/privacy" className="text-sm text-text-light hover:text-primary transition-colors">
+                  Privacy
+                </Link>
+                <Link href="/contact" className="text-sm text-text-light hover:text-primary transition-colors">
+                  Contact
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>

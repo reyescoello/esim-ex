@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 
-const PURCHASES_KEY = 'simora_purchases';
+const PURCHASES_KEY = 'esimex_purchases';
 
 export interface PurchaseRecord {
   id: string;

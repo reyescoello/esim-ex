@@ -2,7 +2,7 @@ import { SignJWT, jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
 
 const secret = new TextEncoder().encode(process.env.JWT_SECRET || 'fallback-secret-key');
-const COOKIE_NAME = 'simora_token';
+const COOKIE_NAME = 'esimex_token';
 
 export interface TokenPayload {
   userId: string;

@@ -20,7 +20,7 @@ export default function Icon() {
       >
         <div style={{ display: 'flex', position: 'relative' }}>
           <span style={{ fontSize: 100, fontWeight: 700, color: 'white', lineHeight: 1 }}>
-            s
+            e
           </span>
           <div
             style={{

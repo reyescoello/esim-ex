@@ -51,12 +51,12 @@ export function useAuth() {
     }
   }, []);
 
-  const register = useCallback(async (name: string, email: string, password: string): Promise<{ ok: boolean; error?: string }> => {
+  const register = useCallback(async (name: string, email: string, password: string, extra?: { firstName?: string; lastName?: string; phone?: string; dateOfBirth?: string; address?: { street: string; city: string; country: string; postalCode: string } }): Promise<{ ok: boolean; error?: string }> => {
     try {
       const res = await fetch('/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({ name, email, password, ...extra }),
       });
       const data = await res.json();
       if (res.ok && data.user) {

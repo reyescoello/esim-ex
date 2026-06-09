@@ -94,15 +94,15 @@ export default function ContactPage() {
           <div className="rounded-2xl border border-border bg-white p-6 shadow-sm">
             <h3 className="font-semibold text-text">Contact Information</h3>
             <div className="mt-4 space-y-4">
-              <div className="flex gap-3"><Mail className="mt-0.5 h-5 w-5 shrink-0 text-primary" /><div><p className="text-sm font-medium text-text">Email</p><p className="text-sm text-text-light">support@simora.com</p></div></div>
-              <div className="flex gap-3"><Phone className="mt-0.5 h-5 w-5 shrink-0 text-primary" /><div><p className="text-sm font-medium text-text">Phone</p><p className="text-sm text-text-light">+44 20 7946 0958</p></div></div>
-              <div className="flex gap-3"><MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" /><div><p className="text-sm font-medium text-text">Address</p><p className="text-sm text-text-light">71 Queen Victoria Street<br />London, EC4V 4AY<br />United Kingdom</p></div></div>
+              <div className="flex gap-3"><Mail className="mt-0.5 h-5 w-5 shrink-0 text-primary" /><div><p className="text-sm font-medium text-text">Email</p><p className="text-sm text-text-light">{process.env.NEXT_PUBLIC_COMPANY_SUPPORT_EMAIL || 'support@esim-ex.com'}</p></div></div>
+              <div className="flex gap-3"><Phone className="mt-0.5 h-5 w-5 shrink-0 text-primary" /><div><p className="text-sm font-medium text-text">Phone</p><p className="text-sm text-text-light">{process.env.NEXT_PUBLIC_COMPANY_PHONE || '+44 20 7946 0958'}</p></div></div>
+              <div className="flex gap-3"><MapPin className="mt-0.5 h-5 w-5 shrink-0 text-primary" /><div><p className="text-sm font-medium text-text">Address</p><p className="text-sm text-text-light">{process.env.NEXT_PUBLIC_COMPANY_NAME || 'ESIMEX LTD'}<br />{process.env.NEXT_PUBLIC_COMPANY_ADDRESS || 'Dept 6750, 196 High Road, Wood Green, London, United Kingdom, N22 8HH'}</p></div></div>
               <div className="flex gap-3"><Clock className="mt-0.5 h-5 w-5 shrink-0 text-primary" /><div><p className="text-sm font-medium text-text">Support Hours</p><p className="text-sm text-text-light">Monday &ndash; Friday: 9:00 AM &ndash; 6:00 PM GMT<br />Saturday: 10:00 AM &ndash; 4:00 PM GMT</p></div></div>
             </div>
           </div>
           <div className="overflow-hidden rounded-2xl border border-border bg-surface">
             <div className="flex h-48 items-center justify-center">
-              <div className="text-center"><MapPin className="mx-auto h-8 w-8 text-text-light/40" /><p className="mt-2 text-sm text-text-light">London, United Kingdom</p></div>
+              <div className="text-center"><MapPin className="mx-auto h-8 w-8 text-text-light/40" /><p className="mt-2 text-sm text-text-light">Wood Green, London, United Kingdom</p></div>
             </div>
           </div>
         </AnimatedSection>

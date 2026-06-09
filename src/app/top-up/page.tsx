@@ -118,7 +118,7 @@ export default function TopUpPage() {
       <AnimatedSection>
         <SectionHeader
           title="Top Up Your Balance"
-          subtitle="Add funds to your Simora wallet and purchase eSIMs instantly."
+          subtitle="Add funds to your Esim-Ex wallet and purchase eSIMs instantly."
         />
       </AnimatedSection>
 
