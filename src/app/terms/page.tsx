@@ -39,7 +39,7 @@ const sections = [
   {
     title: '8. Intellectual Property',
     content:
-      'The Service and its original content, features, and functionality are owned by ESIMEX LTD (Company number 17173983) and are protected by international copyright, trademark, and other intellectual property laws. Our trademarks, service marks, and logos may not be used in connection with any product or service without our prior written consent.',
+      'The Service and its original content, features, and functionality are owned by TRUE CENTRIC LTD (Company number 15642952) and are protected by international copyright, trademark, and other intellectual property laws. Our trademarks, service marks, and logos may not be used in connection with any product or service without our prior written consent.',
   },
   {
     title: '9. Limitation of Liability',
@@ -69,7 +69,7 @@ const sections = [
   {
     title: '14. Contact',
     content:
-      'If you have any questions about these Terms of Service, please contact us at legal@esim-ex.com or write to ESIMEX LTD, Dept 6750, 196 High Road, Wood Green, London, United Kingdom, N22 8HH.',
+      'If you have any questions about these Terms of Service, please contact us at legal@esim-ex.com or write to TRUE CENTRIC LTD, 20 Wenlock Road, London, England, N1 7GU.',
   },
 ];
 

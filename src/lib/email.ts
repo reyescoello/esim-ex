@@ -7,9 +7,9 @@ function getResend(): Resend | null {
 }
 
 const FROM = process.env.RESEND_FROM_EMAIL || 'info@esim-ex.com';
-const COMPANY = process.env.NEXT_PUBLIC_COMPANY_NAME || 'ESIMEX LTD';
-const ADDRESS = process.env.NEXT_PUBLIC_COMPANY_ADDRESS || 'Dept 6750, 196 High Road, Wood Green, London, United Kingdom, N22 8HH';
-const DOMAIN = process.env.NEXT_PUBLIC_COMPANY_DOMAIN || 'esim-ex.com';
+const COMPANY = 'TRUE CENTRIC LTD';
+const ADDRESS = '20 Wenlock Road, London, England, N1 7GU';
+const DOMAIN = 'esim-ex.com';
 
 function emailWrapper(title: string, body: string): string {
   return `

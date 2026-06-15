@@ -3,10 +3,10 @@ import { footerSections } from '@/data/navigation';
 import { PaymentLogos } from '@/components/ui/PaymentLogos';
 import { Logo } from '@/components/ui/Logo';
 
-const companyName = process.env.NEXT_PUBLIC_COMPANY_NAME || 'ESIMEX LTD';
-const companyNumber = process.env.NEXT_PUBLIC_COMPANY_NUMBER || '17173983';
-const companyAddress = process.env.NEXT_PUBLIC_COMPANY_ADDRESS || 'Dept 6750, 196 High Road, Wood Green, London, United Kingdom, N22 8HH';
-const companyEmail = process.env.NEXT_PUBLIC_COMPANY_EMAIL || 'info@esim-ex.com';
+const companyName = 'TRUE CENTRIC LTD';
+const companyNumber = '15642952';
+const companyAddress = '20 Wenlock Road, London, England, N1 7GU';
+const companyEmail = 'info@esim-ex.com';
 
 export function Footer() {
   return (
