@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { ObjectId } from 'mongodb';
 import { getDb } from '@/lib/db';
 import { getAuthUser } from '@/lib/auth';
+import { sendPurchaseEmail, sendPurchaseNotification } from '@/lib/email';
 
 export async function GET() {
   try {
@@ -81,10 +82,15 @@ export async function POST(request: NextRequest) {
     await db.collection('purchases').insertMany(purchaseRecords);
 
     const updatedUser = await db.collection('users').findOne({ _id: new ObjectId(auth.userId) });
+    const remainingBalance = updatedUser?.balance ?? user.balance - total;
+    const customerName = user.name || user.firstName || 'Customer';
+
+    sendPurchaseEmail(user.email, customerName, items, total, remainingBalance).catch(() => {});
+    sendPurchaseNotification(customerName, user.email, items, total).catch(() => {});
 
     return NextResponse.json({
       success: true,
-      balance: updatedUser?.balance ?? user.balance - total,
+      balance: remainingBalance,
       purchaseCount: items.length,
     });
   } catch (err) {

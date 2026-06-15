@@ -24,7 +24,6 @@ export const footerSections: FooterSection[] = [
       { label: 'About Us', href: '/about' },
       { label: 'Blog', href: '/blog' },
       { label: 'Contact', href: '/contact' },
-      { label: 'Help Centre', href: '/help' },
     ],
   },
   {

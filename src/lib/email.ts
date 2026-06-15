@@ -106,6 +106,138 @@ export async function sendPasswordResetEmail(to: string, resetToken: string): Pr
   }
 }
 
+export async function sendTopUpEmail(to: string, name: string, amount: number, newBalance: number): Promise<boolean> {
+  const resend = getResend();
+  if (!resend) return false;
+
+  try {
+    await resend.emails.send({
+      from: `Esim-Ex <${FROM}>`,
+      to,
+      subject: 'Wallet Top-Up Confirmation',
+      html: emailWrapper('Wallet Top-Up Confirmed', `
+        <p style="color: #1E293B; font-size: 16px; font-weight: 600; margin: 0 0 16px;">Hi ${name},</p>
+        <p style="color: #475569; font-size: 14px; line-height: 1.6; margin: 0 0 16px;">
+          Your wallet has been topped up successfully.
+        </p>
+        <table style="width: 100%; border-collapse: collapse; margin: 16px 0;">
+          <tr>
+            <td style="padding: 8px 0; color: #64748B; font-size: 14px;">Amount added:</td>
+            <td style="padding: 8px 0; color: #1E293B; font-size: 14px; font-weight: 600; text-align: right;">£${amount.toFixed(2)}</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px 0; color: #64748B; font-size: 14px;">New balance:</td>
+            <td style="padding: 8px 0; color: #1E293B; font-size: 14px; font-weight: 600; text-align: right;">£${newBalance.toFixed(2)}</td>
+          </tr>
+        </table>
+        <div style="text-align: center; margin: 24px 0;">
+          <a href="https://${DOMAIN}/locations" style="display: inline-block; background: #4F46E5; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px;">
+            Browse Plans
+          </a>
+        </div>
+      `),
+    });
+    return true;
+  } catch (err) {
+    console.error('Failed to send top-up email:', err);
+    return false;
+  }
+}
+
+export async function sendPurchaseEmail(to: string, name: string, items: { name: string; data: string; validity: string; price: number; coverage: string }[], total: number, remainingBalance: number): Promise<boolean> {
+  const resend = getResend();
+  if (!resend) return false;
+
+  const itemRows = items.map((item) => `
+    <tr>
+      <td style="padding: 8px 0; color: #1E293B; font-size: 14px; font-weight: 600;">${item.name}</td>
+      <td style="padding: 8px 0; color: #475569; font-size: 14px;">${item.data} · ${item.validity}</td>
+      <td style="padding: 8px 0; color: #1E293B; font-size: 14px; text-align: right;">£${item.price.toFixed(2)}</td>
+    </tr>
+  `).join('');
+
+  try {
+    await resend.emails.send({
+      from: `Esim-Ex <${FROM}>`,
+      to,
+      subject: `Order Confirmation — ${items.length} eSIM${items.length > 1 ? 's' : ''} purchased`,
+      html: emailWrapper('Order Confirmation', `
+        <p style="color: #1E293B; font-size: 16px; font-weight: 600; margin: 0 0 16px;">Hi ${name},</p>
+        <p style="color: #475569; font-size: 14px; line-height: 1.6; margin: 0 0 16px;">
+          Thank you for your purchase! Here's your order summary:
+        </p>
+        <table style="width: 100%; border-collapse: collapse;">
+          ${itemRows}
+          <tr style="border-top: 1px solid #E2E8F0;">
+            <td colspan="2" style="padding: 12px 0 4px; color: #1E293B; font-size: 14px; font-weight: 700;">Total</td>
+            <td style="padding: 12px 0 4px; color: #1E293B; font-size: 14px; font-weight: 700; text-align: right;">£${total.toFixed(2)}</td>
+          </tr>
+        </table>
+        <p style="color: #94A3B8; font-size: 12px; margin: 12px 0 0;">Remaining wallet balance: £${remainingBalance.toFixed(2)}</p>
+        <div style="text-align: center; margin: 24px 0;">
+          <a href="https://${DOMAIN}/account/esims" style="display: inline-block; background: #4F46E5; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; font-size: 14px;">
+            View My eSIMs
+          </a>
+        </div>
+        <p style="color: #475569; font-size: 14px; line-height: 1.6; margin: 0;">
+          Your eSIM QR code will be available in your account dashboard. Scan it with your phone to install.
+        </p>
+      `),
+    });
+    return true;
+  } catch (err) {
+    console.error('Failed to send purchase email:', err);
+    return false;
+  }
+}
+
+export async function sendPurchaseNotification(customerName: string, customerEmail: string, items: { name: string; data: string; price: number; coverage: string }[], total: number): Promise<boolean> {
+  const resend = getResend();
+  if (!resend) return false;
+
+  const toEmail = process.env.RESEND_TO_EMAIL || 'info@esim-ex.com';
+
+  const itemRows = items.map((item) => `
+    <tr>
+      <td style="padding: 6px 0; color: #1E293B; font-size: 14px;">${item.name}</td>
+      <td style="padding: 6px 0; color: #475569; font-size: 14px;">${item.coverage}</td>
+      <td style="padding: 6px 0; color: #1E293B; font-size: 14px; text-align: right;">£${item.price.toFixed(2)}</td>
+    </tr>
+  `).join('');
+
+  try {
+    await resend.emails.send({
+      from: `Esim-Ex <${FROM}>`,
+      to: toEmail,
+      subject: `[Esim-Ex] New Purchase — £${total.toFixed(2)} from ${customerName}`,
+      html: emailWrapper('New Purchase Received', `
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr>
+            <td style="padding: 8px 0; color: #64748B; font-size: 14px;">Customer:</td>
+            <td style="padding: 8px 0; color: #1E293B; font-size: 14px; font-weight: 600;">${customerName}</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px 0; color: #64748B; font-size: 14px;">Email:</td>
+            <td style="padding: 8px 0; color: #1E293B; font-size: 14px;"><a href="mailto:${customerEmail}" style="color: #4F46E5;">${customerEmail}</a></td>
+          </tr>
+        </table>
+        <hr style="border: none; border-top: 1px solid #E2E8F0; margin: 16px 0;" />
+        <table style="width: 100%; border-collapse: collapse;">
+          ${itemRows}
+          <tr style="border-top: 1px solid #E2E8F0;">
+            <td colspan="2" style="padding: 12px 0 4px; font-weight: 700; color: #1E293B; font-size: 14px;">Total</td>
+            <td style="padding: 12px 0 4px; font-weight: 700; color: #1E293B; font-size: 14px; text-align: right;">£${total.toFixed(2)}</td>
+          </tr>
+        </table>
+      `),
+    });
+    return true;
+  } catch (err) {
+    console.error('Failed to send purchase notification:', err);
+    return false;
+  }
+}
+
 export async function sendContactNotification(data: { name: string; email: string; subject: string; message: string }): Promise<boolean> {
   const resend = getResend();
   if (!resend) return false;

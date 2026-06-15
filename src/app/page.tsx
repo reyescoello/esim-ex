@@ -32,6 +32,7 @@ import { blogArticles } from '@/data/blog';
 import { generalFaqs } from '@/data/faqs';
 import { useApp } from '@/hooks/AppProvider';
 import { formatPrice } from '@/lib/currency';
+import { getFlagForCountry } from '@/lib/flags';
 
 type PlanTab = 'popular' | 'local' | 'regional' | 'global';
 
@@ -153,8 +154,9 @@ export default function HomePage() {
                       {rp.countries.slice(0, 5).map((c) => (
                         <span
                           key={c}
-                          className="rounded-full bg-surface px-3 py-1 text-xs font-medium text-text-light"
+                          className="inline-flex items-center gap-1 rounded-full bg-surface px-3 py-1 text-xs font-medium text-text-light"
                         >
+                          <span>{getFlagForCountry(c)}</span>
                           {c}
                         </span>
                       ))}

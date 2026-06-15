@@ -2,12 +2,13 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { Globe, MapPin, CheckCircle } from 'lucide-react';
+import { Globe, CheckCircle } from 'lucide-react';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { PlanCard } from '@/components/cards/PlanCard';
 import { useApp } from '@/hooks/AppProvider';
 import { regionalPlans } from '@/data/regional';
+import { getFlagForCountry } from '@/lib/flags';
 import { EsimPlan } from '@/types';
 
 const regionImages: Record<string, string> = {
@@ -80,7 +81,7 @@ export default function RegionalPage() {
                       key={country}
                       className="inline-flex items-center gap-1.5 rounded-full border border-border bg-white px-3 py-1 text-sm text-text-light"
                     >
-                      <MapPin className="h-3 w-3 text-primary" />
+                      <span>{getFlagForCountry(country)}</span>
                       {country}
                     </span>
                   ))}
