@@ -1,10 +1,13 @@
 'use client';
 
 import { useState, useMemo } from 'react';
+import Link from 'next/link';
 import { MapPin, ArrowUpDown, Grid3X3, List } from 'lucide-react';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { SearchBar } from '@/components/ui/SearchBar';
 import { CountryCard } from '@/components/cards/CountryCard';
+import { useApp } from '@/hooks/AppProvider';
+import { formatPrice } from '@/lib/currency';
 import { countries, regions } from '@/data/countries';
 
 type RegionFilter = 'All' | (typeof regions)[number];
@@ -14,6 +17,7 @@ type SortOption = 'popular' | 'az' | 'za' | 'price-low' | 'price-high';
 const popularSlugs = ['united-states', 'united-kingdom', 'turkey', 'japan', 'spain', 'france', 'italy', 'germany', 'thailand', 'australia'];
 
 export default function LocationsPage() {
+  const { currency } = useApp();
   const [activeRegion, setActiveRegion] = useState<RegionFilter>('All');
   const [sort, setSort] = useState<SortOption>('popular');
   const [view, setView] = useState<'grid' | 'list'>('grid');
@@ -105,14 +109,14 @@ export default function LocationsPage() {
           ) : (
             <div className="space-y-2">
               {filtered.map((country) => (
-                <a key={country.slug} href={`/locations/${country.slug}`} className="flex items-center gap-4 rounded-xl border border-border bg-white p-4 hover:border-primary/30 hover:shadow-sm transition-all">
+                <Link key={country.slug} href={`/locations/${country.slug}`} className="flex items-center gap-4 rounded-xl border border-border bg-white p-4 hover:border-primary/30 hover:shadow-sm transition-all">
                   <span className="text-3xl">{country.flag}</span>
                   <div className="flex-1">
                     <h3 className="font-semibold text-text">{country.name}</h3>
                     <p className="text-xs text-text-light">{country.region} &middot; {country.plans.length} plans</p>
                   </div>
-                  <span className="text-sm font-semibold text-primary">From £{Math.min(...country.plans.map((p) => p.price)).toFixed(2)}</span>
-                </a>
+                  <span className="text-sm font-semibold text-primary">From {formatPrice(Math.min(...country.plans.map((p) => p.price)), currency)}</span>
+                </Link>
               ))}
             </div>
           )}

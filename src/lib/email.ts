@@ -6,6 +6,10 @@ function getResend(): Resend | null {
   return new Resend(apiKey);
 }
 
+function escapeHtml(str: string): string {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
 const FROM = process.env.RESEND_FROM_EMAIL || 'info@esim-ex.com';
 const COMPANY = 'TRUE CENTRIC LTD';
 const ADDRESS = '20 Wenlock Road, London, England, N1 7GU';
@@ -40,7 +44,7 @@ export async function sendWelcomeEmail(to: string, name: string): Promise<boolea
       to,
       subject: 'Welcome to Esim-Ex!',
       html: emailWrapper('Welcome to Esim-Ex! 🌍', `
-        <p style="color: #1E293B; font-size: 16px; font-weight: 600; margin: 0 0 16px;">Hi ${name},</p>
+        <p style="color: #1E293B; font-size: 16px; font-weight: 600; margin: 0 0 16px;">Hi ${escapeHtml(name)},</p>
         <p style="color: #475569; font-size: 14px; line-height: 1.6; margin: 0 0 16px;">
           Thank you for creating your Esim-Ex account! You're now ready to explore affordable eSIM data plans for 190+ countries worldwide.
         </p>
@@ -116,7 +120,7 @@ export async function sendTopUpEmail(to: string, name: string, amount: number, n
       to,
       subject: 'Wallet Top-Up Confirmation',
       html: emailWrapper('Wallet Top-Up Confirmed', `
-        <p style="color: #1E293B; font-size: 16px; font-weight: 600; margin: 0 0 16px;">Hi ${name},</p>
+        <p style="color: #1E293B; font-size: 16px; font-weight: 600; margin: 0 0 16px;">Hi ${escapeHtml(name)},</p>
         <p style="color: #475569; font-size: 14px; line-height: 1.6; margin: 0 0 16px;">
           Your wallet has been topped up successfully.
         </p>
@@ -150,8 +154,8 @@ export async function sendPurchaseEmail(to: string, name: string, items: { name:
 
   const itemRows = items.map((item) => `
     <tr>
-      <td style="padding: 8px 0; color: #1E293B; font-size: 14px; font-weight: 600;">${item.name}</td>
-      <td style="padding: 8px 0; color: #475569; font-size: 14px;">${item.data} · ${item.validity}</td>
+      <td style="padding: 8px 0; color: #1E293B; font-size: 14px; font-weight: 600;">${escapeHtml(item.name)}</td>
+      <td style="padding: 8px 0; color: #475569; font-size: 14px;">${escapeHtml(item.data)} · ${escapeHtml(item.validity)}</td>
       <td style="padding: 8px 0; color: #1E293B; font-size: 14px; text-align: right;">£${item.price.toFixed(2)}</td>
     </tr>
   `).join('');
@@ -162,7 +166,7 @@ export async function sendPurchaseEmail(to: string, name: string, items: { name:
       to,
       subject: `Order Confirmation — ${items.length} eSIM${items.length > 1 ? 's' : ''} purchased`,
       html: emailWrapper('Order Confirmation', `
-        <p style="color: #1E293B; font-size: 16px; font-weight: 600; margin: 0 0 16px;">Hi ${name},</p>
+        <p style="color: #1E293B; font-size: 16px; font-weight: 600; margin: 0 0 16px;">Hi ${escapeHtml(name)},</p>
         <p style="color: #475569; font-size: 14px; line-height: 1.6; margin: 0 0 16px;">
           Thank you for your purchase! Here's your order summary:
         </p>
@@ -199,8 +203,8 @@ export async function sendPurchaseNotification(customerName: string, customerEma
 
   const itemRows = items.map((item) => `
     <tr>
-      <td style="padding: 6px 0; color: #1E293B; font-size: 14px;">${item.name}</td>
-      <td style="padding: 6px 0; color: #475569; font-size: 14px;">${item.coverage}</td>
+      <td style="padding: 6px 0; color: #1E293B; font-size: 14px;">${escapeHtml(item.name)}</td>
+      <td style="padding: 6px 0; color: #475569; font-size: 14px;">${escapeHtml(item.coverage)}</td>
       <td style="padding: 6px 0; color: #1E293B; font-size: 14px; text-align: right;">£${item.price.toFixed(2)}</td>
     </tr>
   `).join('');
@@ -209,16 +213,16 @@ export async function sendPurchaseNotification(customerName: string, customerEma
     await resend.emails.send({
       from: `Esim-Ex <${FROM}>`,
       to: toEmail,
-      subject: `[Esim-Ex] New Purchase — £${total.toFixed(2)} from ${customerName}`,
+      subject: `[Esim-Ex] New Purchase — £${total.toFixed(2)} from ${escapeHtml(customerName)}`,
       html: emailWrapper('New Purchase Received', `
         <table style="width: 100%; border-collapse: collapse;">
           <tr>
             <td style="padding: 8px 0; color: #64748B; font-size: 14px;">Customer:</td>
-            <td style="padding: 8px 0; color: #1E293B; font-size: 14px; font-weight: 600;">${customerName}</td>
+            <td style="padding: 8px 0; color: #1E293B; font-size: 14px; font-weight: 600;">${escapeHtml(customerName)}</td>
           </tr>
           <tr>
             <td style="padding: 8px 0; color: #64748B; font-size: 14px;">Email:</td>
-            <td style="padding: 8px 0; color: #1E293B; font-size: 14px;"><a href="mailto:${customerEmail}" style="color: #4F46E5;">${customerEmail}</a></td>
+            <td style="padding: 8px 0; color: #1E293B; font-size: 14px;"><a href="mailto:${escapeHtml(customerEmail)}" style="color: #4F46E5;">${escapeHtml(customerEmail)}</a></td>
           </tr>
         </table>
         <hr style="border: none; border-top: 1px solid #E2E8F0; margin: 16px 0;" />
@@ -254,19 +258,19 @@ export async function sendContactNotification(data: { name: string; email: strin
         <table style="width: 100%; border-collapse: collapse;">
           <tr>
             <td style="padding: 8px 0; color: #64748B; font-size: 14px; width: 100px;">Name:</td>
-            <td style="padding: 8px 0; color: #1E293B; font-size: 14px; font-weight: 600;">${data.name}</td>
+            <td style="padding: 8px 0; color: #1E293B; font-size: 14px; font-weight: 600;">${escapeHtml(data.name)}</td>
           </tr>
           <tr>
             <td style="padding: 8px 0; color: #64748B; font-size: 14px;">Email:</td>
-            <td style="padding: 8px 0; color: #1E293B; font-size: 14px;"><a href="mailto:${data.email}" style="color: #4F46E5;">${data.email}</a></td>
+            <td style="padding: 8px 0; color: #1E293B; font-size: 14px;"><a href="mailto:${escapeHtml(data.email)}" style="color: #4F46E5;">${escapeHtml(data.email)}</a></td>
           </tr>
           <tr>
             <td style="padding: 8px 0; color: #64748B; font-size: 14px;">Subject:</td>
-            <td style="padding: 8px 0; color: #1E293B; font-size: 14px; font-weight: 600;">${data.subject}</td>
+            <td style="padding: 8px 0; color: #1E293B; font-size: 14px; font-weight: 600;">${escapeHtml(data.subject)}</td>
           </tr>
         </table>
         <hr style="border: none; border-top: 1px solid #E2E8F0; margin: 16px 0;" />
-        <div style="color: #1E293B; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">${data.message}</div>
+        <div style="color: #1E293B; font-size: 14px; line-height: 1.6; white-space: pre-wrap;">${escapeHtml(data.message)}</div>
       `),
     });
     return true;

@@ -38,7 +38,7 @@ type PlanTab = 'popular' | 'local' | 'regional' | 'global';
 
 export default function HomePage() {
   const [activeTab, setActiveTab] = useState<PlanTab>('popular');
-  const { currency } = useApp();
+  const { currency, balance, isAuthenticated } = useApp();
   const popular = getPopularCountries();
 
   const tabs: { key: PlanTab; label: string }[] = [
@@ -379,8 +379,8 @@ export default function HomePage() {
               <div className="md:flex-1">
                 <div className="rounded-2xl border border-border bg-surface p-6 text-center">
                   <p className="text-sm font-medium text-text-light">Your balance</p>
-                  <p className="mt-1 text-4xl font-extrabold text-text">{formatPrice(0, currency)}</p>
-                  <p className="mt-2 text-xs text-text-light">Top up to start purchasing plans</p>
+                  <p className="mt-1 text-4xl font-extrabold text-text">{formatPrice(isAuthenticated ? balance : 0, currency)}</p>
+                  <p className="mt-2 text-xs text-text-light">{isAuthenticated ? 'Your current wallet balance' : 'Sign in and top up to start purchasing plans'}</p>
                   <Link
                     href="/top-up"
                     className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary py-3 font-semibold text-white transition-colors hover:bg-primary-dark"

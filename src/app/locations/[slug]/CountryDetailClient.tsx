@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
 import { ArrowLeft, ArrowRight, CheckCircle } from 'lucide-react';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
@@ -18,6 +19,7 @@ export function CountryDetailClient({
   relatedCountries: Country[];
 }) {
   const { addToCart } = useApp();
+  const [addedId, setAddedId] = useState<string | null>(null);
 
   function handleBuy(plan: EsimPlan) {
     addToCart({
@@ -28,10 +30,18 @@ export function CountryDetailClient({
       price: plan.price,
       coverage: plan.coverage,
     });
+    setAddedId(plan.id);
+    setTimeout(() => setAddedId(null), 2000);
   }
 
   return (
     <div className="bg-white">
+      {addedId && (
+        <div className="fixed top-24 right-6 z-50 flex items-center gap-2 rounded-xl bg-success px-5 py-3 text-white shadow-lg animate-in fade-in slide-in-from-top-2">
+          <CheckCircle className="h-5 w-5" />
+          <span className="font-medium">Added to cart</span>
+        </div>
+      )}
       {/* Header */}
       <section className="bg-gradient-to-br from-primary/5 via-white to-accent-light/20 py-12 md:py-16">
         <div className="mx-auto max-w-5xl px-4">

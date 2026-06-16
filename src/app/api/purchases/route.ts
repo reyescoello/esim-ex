@@ -3,6 +3,23 @@ import { ObjectId } from 'mongodb';
 import { getDb } from '@/lib/db';
 import { getAuthUser } from '@/lib/auth';
 import { sendPurchaseEmail, sendPurchaseNotification } from '@/lib/email';
+import { countries } from '@/data/countries';
+import { regionalPlans } from '@/data/regional';
+import { globalPlans } from '@/data/global';
+
+function getServerPrice(planId: string): number | null {
+  for (const c of countries) {
+    const plan = c.plans.find((p) => p.id === planId);
+    if (plan) return plan.price;
+  }
+  for (const r of regionalPlans) {
+    const plan = r.plans.find((p) => p.id === planId);
+    if (plan) return plan.price;
+  }
+  const gp = globalPlans.find((p) => p.id === planId);
+  if (gp) return gp.price;
+  return null;
+}
 
 export async function GET() {
   try {
@@ -44,6 +61,17 @@ export async function POST(request: NextRequest) {
 
     if (!items || !Array.isArray(items) || items.length === 0) {
       return NextResponse.json({ error: 'Items array is required' }, { status: 400 });
+    }
+
+    for (const item of items) {
+      if (!item.planId || typeof item.planId !== 'string') {
+        return NextResponse.json({ error: 'Invalid item: planId is required' }, { status: 400 });
+      }
+      const serverPrice = getServerPrice(item.planId);
+      if (serverPrice === null) {
+        return NextResponse.json({ error: `Unknown plan: ${item.planId}` }, { status: 400 });
+      }
+      item.price = serverPrice;
     }
 
     const total = items.reduce((sum: number, item: { price: number }) => sum + item.price, 0);

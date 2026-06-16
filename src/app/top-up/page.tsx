@@ -57,6 +57,19 @@ export default function TopUpPage() {
       setError('Please sign in to top up your wallet.');
       return;
     }
+    const rawCard = cardNumber.replace(/\s/g, '');
+    if (rawCard.length < 13) {
+      setError('Please enter a valid card number.');
+      return;
+    }
+    if (expiry.length < 5) {
+      setError('Please enter a valid expiry date (MM/YY).');
+      return;
+    }
+    if (cvc.length < 3) {
+      setError('Please enter a valid CVC.');
+      return;
+    }
 
     setProcessing(true);
     setError('');
