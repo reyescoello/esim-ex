@@ -11,8 +11,8 @@ function escapeHtml(str: string): string {
 }
 
 const FROM = process.env.RESEND_FROM_EMAIL || 'info@esim-ex.com';
-const COMPANY = 'TRUE CENTRIC LTD';
-const ADDRESS = '20 Wenlock Road, London, England, N1 7GU';
+const COMPANY = 'ESIMEX LTD';
+const ADDRESS = 'Dept 6750, 196 High Road, Wood Green, London, United Kingdom, N22 8HH';
 const DOMAIN = 'esim-ex.com';
 
 function emailWrapper(title: string, body: string): string {

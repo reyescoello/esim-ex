@@ -59,7 +59,7 @@ To exercise any of these rights, contact us at privacy@esim-ex.com. We will resp
   },
   {
     title: '12. Contact Us',
-    content: `If you have questions or concerns about this Privacy Policy or our data practices, please contact our Data Protection Officer at privacy@esim-ex.com, or write to TRUE CENTRIC LTD, 20 Wenlock Road, London, England, N1 7GU.
+    content: `If you have questions or concerns about this Privacy Policy or our data practices, please contact our Data Protection Officer at privacy@esim-ex.com, call us at +44 7447 196114, or write to ESIMEX LTD, Dept 6750, 196 High Road, Wood Green, London, United Kingdom, N22 8HH.
 
 For complaints regarding our handling of your personal data, you also have the right to lodge a complaint with the Information Commissioner's Office (ICO) at ico.org.uk.`,
   },
