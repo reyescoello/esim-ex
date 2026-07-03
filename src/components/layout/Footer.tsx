@@ -3,9 +3,10 @@ import { footerSections } from '@/data/navigation';
 import { PaymentLogos } from '@/components/ui/PaymentLogos';
 import { Logo } from '@/components/ui/Logo';
 
-const companyName = 'TRUE CENTRIC LTD';
-const companyNumber = '15642952';
-const companyAddress = '20 Wenlock Road, London, England, N1 7GU';
+const companyName = 'ESIMEX LTD';
+const companyNumber = '17173983';
+const companyAddress = 'Dept 6750, 196 High Road, Wood Green, London, United Kingdom, N22 8HH';
+const companyPhone = '+44 7447 196114';
 const companyEmail = 'info@esim-ex.com';
 
 export function Footer() {
@@ -49,6 +50,7 @@ export function Footer() {
               <p className="font-semibold text-text">{companyName}</p>
               <p>Company number: {companyNumber}</p>
               <p>{companyAddress}</p>
+              <p>Phone: <a href={`tel:${companyPhone.replace(/\s/g, '')}`} className="hover:text-primary transition-colors">{companyPhone}</a></p>
               <p>Email: <a href={`mailto:${companyEmail}`} className="hover:text-primary transition-colors">{companyEmail}</a></p>
             </div>
             <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
