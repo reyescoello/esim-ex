@@ -17,57 +17,77 @@ const sections = [
       'To use certain features of the Service, you must create an account. You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. You must provide accurate and complete information during registration and keep your account information up to date. You must be at least 18 years old to create an account.',
   },
   {
-    title: '4. Purchases and Payments',
+    title: '4. Purchases, Payments and Taxes',
     content:
-      'All eSIM plan purchases are processed in GBP (British Pounds). Prices displayed in other currencies are estimates based on current exchange rates and may differ from the actual charged amount. Payment is required at the time of purchase. We accept Visa and Mastercard credit and debit cards only. All transactions are processed with 3D Secure authentication for your protection. Wallet top-ups are non-refundable but never expire.',
+      'All eSIM plan purchases are processed in GBP (British Pounds). All prices displayed on Esim-Ex are inclusive of all applicable taxes, including UK VAT where chargeable; no additional taxes, duties, or processing fees are added at checkout, and the price you see is the price you pay. Prices displayed in other currencies are estimates based on current exchange rates and may differ from the actual charged amount. Payment is required at the time of purchase. We accept Visa and Mastercard credit and debit cards only, and all transactions are processed with 3D Secure authentication for your protection. Wallet top-ups are non-refundable and never expire, except where a refund is required by applicable consumer law (for example, during a statutory cooling-off period) or in the event of permanent discontinuation of the Service.',
   },
   {
-    title: '5. eSIM Activation and Usage',
+    title: '5. eSIM Delivery and Activation',
     content:
-      'eSIM profiles are delivered digitally via QR code after purchase. Once an eSIM profile has been downloaded and activated on a device, it is considered used and is non-transferable. Plan validity begins when the eSIM first connects to a supported network in the coverage area. Data usage is tracked by the network operator and may differ slightly from on-device usage indicators.',
+      'eSIM profiles are delivered digitally and are, in the vast majority of cases, provisioned instantly — within a few minutes of a successful payment. Your eSIM is made available as a QR code on the order confirmation page and is also sent to your registered email address. In the rare event that provisioning is delayed, delivery will be completed within 24 hours. Once an eSIM profile has been downloaded and activated on a device, it is considered used and is non-transferable. Plan validity begins when the eSIM first connects to a supported network in the coverage area. Data usage is tracked by the network operator and may differ slightly from on-device usage indicators.',
   },
   {
     title: '6. Refund Policy',
     content:
-      'We offer a full refund for unused eSIM plans within 30 days of purchase. An eSIM is considered "used" once it has connected to a network and consumed any amount of data. To request a refund, contact our support team with your order reference. Refunds are processed to the original payment method within 5-10 business days. Wallet balance top-ups are non-refundable.',
+      'We offer a full refund for unused eSIM plans within 30 days of purchase. An eSIM is considered "used" once it has connected to a network and consumed any amount of data. To request a refund, contact our support team with your order reference. Refunds are processed to the original payment method within 5-10 business days. Wallet balance top-ups are non-refundable, except where a refund is required by applicable consumer law or in the event of permanent discontinuation of the Service.',
   },
   {
-    title: '7. Acceptable Use',
+    title: '7. Service Failures and Remedies',
+    content:
+      'If we fail to deliver a purchased eSIM because of a technical or provisioning failure on our side, or if the QR code you receive is faulty, invalid, or cannot be installed or activated, you are entitled — at your choice — to a free re-issue of the eSIM or a full refund to your original payment method, and this does not affect your statutory rights. If a plan does not perform materially as described due to a fault attributable to us or our upstream operators, we will provide a replacement or a proportionate refund. If we permanently cease to provide the Service, any unused eSIM plans and any remaining wallet balance will be refunded to affected users. Where we terminate an individual account other than for a material breach by you, we will refund any unused wallet balance and honour any active eSIM plans until their expiry.',
+  },
+  {
+    title: '8. Disputes and Chargebacks',
+    content:
+      'If you have a problem with an order, please contact our support team at support@esim-ex.com before initiating a chargeback with your bank or card issuer — most issues (delayed delivery, faulty QR codes, or activation problems) can be resolved quickly and directly. To raise a formal dispute, email us within 60 days of the transaction with your order reference and a description of the issue; we will acknowledge your dispute within 2 business days and aim to resolve it within 15 business days. Where a chargeback is filed, we will cooperate with your card issuer and may submit transaction records, delivery confirmation, and activation logs as evidence. We reserve the right to contest chargebacks that we reasonably believe to be unwarranted, and repeated or fraudulent chargebacks may result in suspension of your account. Nothing in this section limits your statutory rights or your right to escalate an unresolved dispute to your card issuer or a relevant ombudsman.',
+  },
+  {
+    title: '9. Prohibited Jurisdictions and Sanctions',
+    content:
+      'The Service is not offered to, and may not be purchased or used by, any person or entity located in, ordinarily resident in, or acting on behalf of any country or territory subject to comprehensive sanctions or embargoes imposed by the United Kingdom, the European Union, the United Nations, or the United States, nor by any person listed on an applicable sanctions or denied-parties list. By using the Service you represent that you are not subject to any such restriction. We reserve the right to refuse, cancel, suspend, or refund any order that we reasonably believe would breach applicable sanctions, export-control, or other laws.',
+  },
+  {
+    title: '10. Account Closure and Termination',
+    content:
+      'You may close your account and terminate your relationship with Esim-Ex at any time, without charge, either from your account settings or by emailing support@esim-ex.com. Upon closure we will deactivate your account and delete or anonymise your personal data in accordance with our Privacy Policy and applicable law. Any remaining wallet balance at the time of closure will be refunded to your original payment method, subject to reasonable identity verification, except where such a refund is prohibited by law. Any active eSIM plans will remain valid until their expiry. We may suspend or terminate your account if you materially breach these Terms; where we do so, we will give you notice where practicable and, unless the termination results from your fraud or unlawful conduct, refund any unused wallet balance.',
+  },
+  {
+    title: '11. Acceptable Use',
     content:
       'You agree not to use the Service for any unlawful purpose or in violation of any applicable laws. You may not resell, redistribute, or commercially exploit eSIM plans purchased through Esim-Ex without our prior written consent. Excessive or abusive usage that degrades network quality for other users may result in throttling or suspension of service.',
   },
   {
-    title: '8. Intellectual Property',
+    title: '12. Intellectual Property',
     content:
-      'The Service and its original content, features, and functionality are owned by ESIMEX LTD (Company number 17173983) and are protected by international copyright, trademark, and other intellectual property laws. Our trademarks, service marks, and logos may not be used in connection with any product or service without our prior written consent.',
+      'The Service and its original content, features, and functionality are owned by ESIMEX LTD (Company number 17173983) and are protected by international copyright, trademark, and other intellectual property laws. Our trademarks, service marks, and logos may not be used in connection with any product or service without our prior written consent. The Visa and Mastercard marks displayed on our website are the property of their respective owners and are used solely to indicate accepted payment methods.',
   },
   {
-    title: '9. Limitation of Liability',
+    title: '13. Limitation of Liability',
     content:
-      'To the maximum extent permitted by applicable law, Esim-Ex shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the Service. This includes but is not limited to loss of data, loss of profits, or business interruption. Our total liability for any claim arising from the Service shall not exceed the amount you paid to Esim-Ex in the 12 months preceding the claim.',
+      'To the maximum extent permitted by applicable law, Esim-Ex shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use the Service. This includes but is not limited to loss of data, loss of profits, or business interruption. Our total liability for any claim arising from the Service shall not exceed the amount you paid to Esim-Ex in the 12 months preceding the claim. Nothing in these Terms excludes or limits our liability where it would be unlawful to do so, including liability for death or personal injury caused by negligence or for fraud.',
   },
   {
-    title: '10. Network Coverage and Performance',
+    title: '14. Network Coverage and Performance',
     content:
       'While we strive to provide accurate coverage information, network availability and performance depend on local operators and infrastructure. We do not guarantee specific speeds, uptime, or coverage in all areas within a listed country. Network performance may vary based on location, time of day, device capability, and local network conditions.',
   },
   {
-    title: '11. Privacy',
+    title: '15. Privacy',
     content:
       'Your use of the Service is also governed by our Privacy Policy, which describes how we collect, use, and share your personal information. By using the Service, you consent to the data practices described in our Privacy Policy.',
   },
   {
-    title: '12. Changes to Terms',
+    title: '16. Changes to Terms',
     content:
       'We reserve the right to modify or replace these Terms at any time. Material changes will be communicated via email or a prominent notice on our website at least 30 days before they take effect. Your continued use of the Service after changes become effective constitutes acceptance of the revised Terms.',
   },
   {
-    title: '13. Governing Law',
+    title: '17. Governing Law',
     content:
       'These Terms shall be governed by and construed in accordance with the laws of England and Wales, without regard to conflict of law provisions. Any disputes arising from these Terms or the Service shall be subject to the exclusive jurisdiction of the courts of England and Wales.',
   },
   {
-    title: '14. Contact',
+    title: '18. Contact',
     content:
       'If you have any questions about these Terms of Service, please contact us at legal@esim-ex.com, call us at +44 7447 196114, or write to ESIMEX LTD, Dept 6750, 196 High Road, Wood Green, London, United Kingdom, N22 8HH.',
   },
@@ -79,7 +99,7 @@ export default function TermsPage() {
       <AnimatedSection>
         <div className="text-center">
           <h1 className="text-3xl font-bold text-text md:text-4xl">Terms of Service</h1>
-          <p className="mt-3 text-text-light">Last updated: 1 April 2026</p>
+          <p className="mt-3 text-text-light">Last updated: 17 July 2026</p>
         </div>
       </AnimatedSection>
 
