@@ -15,9 +15,6 @@ export default function TopUpPage() {
   const [selectedAmount, setSelectedAmount] = useState<number | null>(null);
   const [customAmount, setCustomAmount] = useState('');
   const [useCustom, setUseCustom] = useState(false);
-  const [cardNumber, setCardNumber] = useState('');
-  const [expiry, setExpiry] = useState('');
-  const [cvc, setCvc] = useState('');
   const [processing, setProcessing] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
@@ -37,17 +34,6 @@ export default function TopUpPage() {
     setSelectedAmount(null);
   }
 
-  function formatCardNumber(value: string) {
-    const digits = value.replace(/\D/g, '').slice(0, 16);
-    return digits.replace(/(\d{4})(?=\d)/g, '$1 ');
-  }
-
-  function formatExpiry(value: string) {
-    const digits = value.replace(/\D/g, '').slice(0, 4);
-    if (digits.length > 2) return `${digits.slice(0, 2)}/${digits.slice(2)}`;
-    return digits;
-  }
-
   async function handlePayment() {
     if (!isValidAmount) {
       setError('Minimum top-up amount is £10.');
@@ -57,28 +43,20 @@ export default function TopUpPage() {
       setError('Please sign in to top up your wallet.');
       return;
     }
-    const rawCard = cardNumber.replace(/\s/g, '');
-    if (rawCard.length < 13) {
-      setError('Please enter a valid card number.');
-      return;
-    }
-    if (expiry.length < 5) {
-      setError('Please enter a valid expiry date (MM/YY).');
-      return;
-    }
-    if (cvc.length < 3) {
-      setError('Please enter a valid CVC.');
-      return;
-    }
 
     setProcessing(true);
     setError('');
 
-    const ok = await topUp(effectiveAmount);
-    if (ok) {
-      setSuccess(true);
+    const res = await topUp(effectiveAmount);
+
+    if (res.ok) {
+      if (res.redirectUrl) {
+        window.location.href = res.redirectUrl;
+      } else {
+        setSuccess(true);
+      }
     } else {
-      setError('Top-up failed. Please try again.');
+      setError(res.error || 'Top-up failed. Please try again.');
     }
     setProcessing(false);
   }
@@ -111,9 +89,6 @@ export default function TopUpPage() {
                   setSelectedAmount(null);
                   setCustomAmount('');
                   setUseCustom(false);
-                  setCardNumber('');
-                  setExpiry('');
-                  setCvc('');
                 }}
                 className="rounded-xl border border-border px-6 py-3 font-semibold text-text transition-colors hover:bg-surface"
               >
@@ -203,60 +178,20 @@ export default function TopUpPage() {
         </div>
       </AnimatedSection>
 
-      {/* Card payment form */}
+      {/* Payment details */}
       <AnimatedSection delay={0.25}>
         <div className="mt-12 rounded-2xl border border-border bg-white p-6 sm:p-8">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
               <CreditCard className="h-5 w-5 text-text-light" />
-              <h3 className="text-lg font-semibold text-text">Card Details</h3>
+              <h3 className="text-lg font-semibold text-text">Payment Method</h3>
             </div>
             <PaymentLogos />
           </div>
 
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-text-light mb-1.5">
-                Card Number
-              </label>
-              <input
-                type="text"
-                placeholder="1234 5678 9012 3456"
-                value={cardNumber}
-                onChange={(e) => setCardNumber(formatCardNumber(e.target.value))}
-                maxLength={19}
-                className="w-full rounded-xl border border-border px-4 py-3 text-text outline-none transition-colors focus:border-primary focus:ring-1 focus:ring-primary"
-              />
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className="block text-sm font-medium text-text-light mb-1.5">
-                  Expiry Date
-                </label>
-                <input
-                  type="text"
-                  placeholder="MM/YY"
-                  value={expiry}
-                  onChange={(e) => setExpiry(formatExpiry(e.target.value))}
-                  maxLength={5}
-                  className="w-full rounded-xl border border-border px-4 py-3 text-text outline-none transition-colors focus:border-primary focus:ring-1 focus:ring-primary"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-text-light mb-1.5">
-                  CVC
-                </label>
-                <input
-                  type="text"
-                  placeholder="123"
-                  value={cvc}
-                  onChange={(e) => setCvc(e.target.value.replace(/\D/g, '').slice(0, 4))}
-                  maxLength={4}
-                  className="w-full rounded-xl border border-border px-4 py-3 text-text outline-none transition-colors focus:border-primary focus:ring-1 focus:ring-primary"
-                />
-              </div>
-            </div>
-          </div>
+          <p className="text-text-light text-sm mb-6">
+            You will be securely redirected to PayAdmit to complete your payment.
+          </p>
 
           {error && (
             <div className="mt-4 flex items-center gap-2 rounded-lg bg-danger/10 px-4 py-2.5 text-sm text-danger">
@@ -276,12 +211,12 @@ export default function TopUpPage() {
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
                 </svg>
-                Processing...
+                Redirecting...
               </span>
             ) : (
               <>
                 <Lock className="h-4 w-4" />
-                Pay {isValidAmount ? formatPrice(effectiveAmount, currency) : 'by Card'}
+                Proceed to Payment {isValidAmount ? `(${formatPrice(effectiveAmount, currency)})` : ''}
               </>
             )}
           </button>

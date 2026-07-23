@@ -21,7 +21,7 @@ export interface PurchaseRecord {
 interface AppContextType {
   balance: number;
   walletLoaded: boolean;
-  topUp: (amount: number) => Promise<boolean>;
+  topUp: (amount: number) => Promise<{ ok: boolean; redirectUrl?: string; error?: string }>;
   spend: (amount: number) => Promise<boolean>;
   canAfford: (amount: number) => boolean;
   currency: Currency;
@@ -91,23 +91,29 @@ export function AppProvider({ children }: { children: ReactNode }) {
     }
   }, [auth.isAuthenticated, auth.loaded, auth.user, refreshPurchases]);
 
-  const topUp = useCallback(async (amount: number): Promise<boolean> => {
-    try {
-      const res = await fetch('/api/wallet/topup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ amount }),
-      });
-      const data = await res.json();
-      if (res.ok) {
-        setBalance(data.balance);
-        return true;
+  const topUp = useCallback(
+    async (amount: number): Promise<{ ok: boolean; redirectUrl?: string; error?: string }> => {
+      try {
+        const res = await fetch('/api/wallet/topup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ amount }),
+        });
+        const data = await res.json();
+        if (res.ok) {
+          if (data.redirectUrl) {
+            return { ok: true, redirectUrl: data.redirectUrl };
+          }
+          setBalance(data.balance);
+          return { ok: true };
+        }
+        return { ok: false, error: data.error || 'Top-up failed' };
+      } catch {
+        return { ok: false, error: 'Network error' };
       }
-      return false;
-    } catch {
-      return false;
-    }
-  }, []);
+    },
+    []
+  );
 
   const buyItems = useCallback(async (items: CartItem[]): Promise<{ ok: boolean; error?: string }> => {
     try {

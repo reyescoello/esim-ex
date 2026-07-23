@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { Mail, Lock, Eye, EyeOff, User, AlertCircle, Phone, MapPin, Calendar, ChevronLeft, ChevronRight, Check } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { AnimatedSection } from '@/components/ui/AnimatedSection';
 import { useApp } from '@/hooks/AppProvider';
 
@@ -66,8 +66,13 @@ export default function SignUpPage() {
   const { register, isAuthenticated } = useApp();
   const router = useRouter();
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push('/account');
+    }
+  }, [isAuthenticated, router]);
+
   if (isAuthenticated) {
-    router.push('/account');
     return null;
   }
 
