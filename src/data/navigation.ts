@@ -38,8 +38,11 @@ export const footerSections: FooterSection[] = [
   {
     title: 'Legal',
     links: [
-      { label: 'Terms of Service', href: '/terms' },
+      { label: 'Terms & Conditions', href: '/terms' },
       { label: 'Privacy Policy', href: '/privacy' },
+      { label: 'Refund & Cancellation', href: '/refund' },
+      { label: 'Digital Delivery', href: '/delivery' },
+      { label: 'Payment Policy', href: '/payment' },
     ],
   },
 ];
