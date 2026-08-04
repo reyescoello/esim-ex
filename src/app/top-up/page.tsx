@@ -7,7 +7,7 @@ import { SectionHeader } from '@/components/ui/SectionHeader';
 import { TopUpCard } from '@/components/cards/TopUpCard';
 import { PaymentLogos } from '@/components/ui/PaymentLogos';
 import { useApp } from '@/hooks/AppProvider';
-import { formatPrice } from '@/lib/currency';
+import { formatPrice, convertPrice, convertToGBP, CURRENCIES } from '@/lib/currency';
 import { topUpOptions } from '@/data/navigation';
 
 export default function TopUpPage() {
@@ -19,7 +19,11 @@ export default function TopUpPage() {
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState('');
 
-  const effectiveAmount = useCustom ? parseFloat(customAmount) || 0 : selectedAmount ?? 0;
+  // Preset amounts are stored in GBP; the custom amount is entered in the
+  // display currency, so convert it back to GBP for the wallet.
+  const effectiveAmount = useCustom
+    ? convertToGBP(parseFloat(customAmount) || 0, currency)
+    : selectedAmount ?? 0;
   const isValidAmount = effectiveAmount >= 10;
 
   function handleSelectPreset(amount: number) {
@@ -36,7 +40,7 @@ export default function TopUpPage() {
 
   async function handlePayment() {
     if (!isValidAmount) {
-      setError('Minimum top-up amount is £10.');
+      setError(`Minimum top-up amount is ${formatPrice(10, currency)}.`);
       return;
     }
     if (!isAuthenticated) {
@@ -147,18 +151,18 @@ export default function TopUpPage() {
       <AnimatedSection delay={0.2}>
         <div className="mt-8">
           <label className="block text-sm font-medium text-text-light mb-2 text-center">
-            Or enter a custom amount (minimum £10)
+            Or enter a custom amount (minimum {formatPrice(10, currency)})
           </label>
           <div className="mx-auto max-w-xs">
             <div className="relative">
               <span className="absolute left-4 top-1/2 -translate-y-1/2 text-text-light font-medium">
-                £
+                {CURRENCIES[currency].symbol}
               </span>
               <input
                 type="number"
-                min="10"
+                min={convertPrice(10, currency)}
                 step="1"
-                placeholder="10.00"
+                placeholder={convertPrice(10, currency).toFixed(2)}
                 value={customAmount}
                 onFocus={handleCustomFocus}
                 onChange={(e) => {

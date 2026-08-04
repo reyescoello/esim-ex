@@ -15,7 +15,7 @@ We do not sell your personal information to third parties. We only share data as
   },
   {
     title: '3. Payment Information',
-    content: `All payment transactions are processed by our third-party payment processor. We do not store your full credit or debit card numbers on our servers. Our payment processor is PCI DSS compliant and uses industry-standard encryption to protect your financial data. We retain only a tokenised reference and the last four digits of your card for order identification purposes.`,
+    content: `All payment transactions are processed by our third-party payment processor. We do not store your full credit or debit card numbers on our servers. Our payment processor is PCI DSS compliant and uses industry-standard encryption to protect your financial data. We retain only a secure, non-sensitive reference and the last four digits of your card for order identification purposes.`,
   },
   {
     title: '4. Data Sharing',
