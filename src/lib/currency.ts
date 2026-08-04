@@ -10,6 +10,10 @@ export function convertPrice(priceGBP: number, currency: Currency): number {
   return Math.round(priceGBP * CURRENCIES[currency].rate * 100) / 100;
 }
 
+export function convertToGBP(amount: number, currency: Currency): number {
+  return Math.round((amount / CURRENCIES[currency].rate) * 100) / 100;
+}
+
 export function formatPrice(priceGBP: number, currency: Currency): string {
   const converted = convertPrice(priceGBP, currency);
   return `${CURRENCIES[currency].symbol}${converted.toFixed(2)}`;

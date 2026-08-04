@@ -3935,7 +3935,7 @@ export const policies: PolicyDoc[] = [
             "text": "Depending on the provider, payment information may be processed using:",
             "items": [
               "(a) encryption",
-              "(b) tokenisation",
+              "(b) replacing card details with a secure, non-sensitive reference",
               "(c) fraud monitoring",
               "(d) payment authentication",
               "(e) access controls",
